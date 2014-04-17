@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Place Flickr PhotosTVC - Photos @ a Place-->
+        <!--Region Flickr PhotosTVC - Photos @ a Place-->
         <scene sceneID="S02-p4-eBZ">
             <objects>
-                <tableViewController id="ut1-qL-TSU" customClass="PlaceFlickrPhotosTVC" sceneMemberID="viewController">
+                <tableViewController id="ut1-qL-TSU" customClass="RegionFlickrPhotosTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qxb-In-Nfh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,10 +58,10 @@
             </objects>
             <point key="canvasLocation" x="2493" y="47"/>
         </scene>
-        <!--Top Flickr PlacesTVC - Top Places-->
+        <!--Top Flickr RegionsTVC - Top Places-->
         <scene sceneID="guM-Is-Xdo">
             <objects>
-                <tableViewController id="qi3-nm-UdF" customClass="TopFlickrPlacesTVC" sceneMemberID="viewController">
+                <tableViewController id="qi3-nm-UdF" customClass="TopFlickrRegionsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tST-td-fVR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,11 +163,11 @@
             </objects>
             <point key="canvasLocation" x="3029" y="406"/>
         </scene>
-        <!--Navigation Controller - Top Places-->
+        <!--Navigation Controller - Top Regions-->
         <scene sceneID="VQX-95-CXB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mG1-gZ-aUl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Top Places" id="4Vs-mm-u2a"/>
+                    <tabBarItem key="tabBarItem" title="Top Regions" id="4Vs-mm-u2a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mql-5H-ma2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

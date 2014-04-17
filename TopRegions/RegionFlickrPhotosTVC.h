@@ -8,6 +8,6 @@
 
 #import "FlickrPhotosTVC.h"
 
-@interface PlaceFlickrPhotosTVC : FlickrPhotosTVC
-@property (nonatomic, strong)NSDictionary *place;
+@interface RegionFlickrPhotosTVC : FlickrPhotosTVC
+@property (nonatomic, strong)NSDictionary *region;
 @end

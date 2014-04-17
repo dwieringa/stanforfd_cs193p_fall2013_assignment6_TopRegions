@@ -1,21 +1,21 @@
 //
-//  FlickrPlacesTVC.m
-//  TopPlaces
+//  FlickrRegionsTVC.m
+//  TopRegions
 //
 //  Created by David Wieringa on 4/10/14.
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.
 //
 
-#import "FlickrPlacesTVC.h"
+#import "FlickrRegionsTVC.h"
 #import "FlickrFetcher.h"
 
-@interface FlickrPlacesTVC ()
+@interface FlickrRegionsTVC ()
 
 @end
 
-@implementation FlickrPlacesTVC
+@implementation FlickrRegionsTVC
 
-- (void)setPlaces:(NSArray *)places
+- (void)setRegions:(NSArray *)places
 {
     NSMutableArray *countries = [[NSMutableArray alloc] init];
     NSMutableDictionary *placesByCountry = [[NSMutableDictionary alloc] init];
@@ -51,7 +51,7 @@
     [self.tableView reloadData];
 }
 
-- (NSDictionary *)placeForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSDictionary *)regionForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *country = self.countries[indexPath.section];
     NSArray *placesInCountry = self.placesByCountry[country];
@@ -82,7 +82,7 @@
                                                             forIndexPath:indexPath];
     
     // Configure the cell...
-    NSDictionary *place = [self placeForRowAtIndexPath:indexPath];
+    NSDictionary *place = [self regionForRowAtIndexPath:indexPath];
     cell.textLabel.text = [place valueForKeyPath:@"title"];
     cell.detailTextLabel.text = [place valueForKeyPath:@"subtitle"];
     return cell;

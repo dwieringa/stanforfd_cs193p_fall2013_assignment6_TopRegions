@@ -1,6 +1,6 @@
 //
 //  FlickrPhotosTVC.m
-//  TopPlaces
+//  TopRegions
 //
 //  Created by David Wieringa on 4/14/14.
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.

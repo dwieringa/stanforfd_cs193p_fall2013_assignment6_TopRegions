@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.
 //
 
-#import "FlickrPlacesTVC.h"
+#import "FlickrRegionsTVC.h"
 
-@interface TopFlickrPlacesTVC : FlickrPlacesTVC
+@interface TopFlickrRegionsTVC : FlickrRegionsTVC
 
 @end

@@ -1,5 +1,5 @@
 //
-//  FlickrPlacesTVC.h
+//  FlickrRegionsTVC.h
 //  TopPlaces
 //
 //  Created by David Wieringa on 4/10/14.
@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlickrPlacesTVC : UITableViewController
-@property (nonatomic, strong) NSArray *places;
+@interface FlickrRegionsTVC : UITableViewController
+@property (nonatomic, strong) NSArray *regions;
 @property (readonly, nonatomic, strong) NSArray *countries; // of Flickr countries
 @property (readonly, nonatomic, strong) NSDictionary *placesByCountry; // of Flickr places NSDictionary
 
-- (NSDictionary *)placeForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSDictionary *)regionForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

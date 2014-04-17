@@ -18,10 +18,10 @@
             </objects>
             <point key="canvasLocation" x="-1144" y="774"/>
         </scene>
-        <!--Place Flickr PhotosTVC - The Place-->
+        <!--Region Flickr PhotosTVC - The Place-->
         <scene sceneID="teD-dM-0iL">
             <objects>
-                <tableViewController title="The Place" id="oeX-B4-vQq" customClass="PlaceFlickrPhotosTVC" sceneMemberID="viewController">
+                <tableViewController title="The Place" id="oeX-B4-vQq" customClass="RegionFlickrPhotosTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ihl-gB-NZY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="1781" y="-689"/>
         </scene>
-        <!--Top Flickr PlacesTVC - Top Places-->
+        <!--Top Flickr RegionsTVC - Top Places-->
         <scene sceneID="Oty-Wn-IhH">
             <objects>
-                <tableViewController title="Top Places" id="K9L-XC-OX6" customClass="TopFlickrPlacesTVC" sceneMemberID="viewController">
+                <tableViewController title="Top Places" id="K9L-XC-OX6" customClass="TopFlickrRegionsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4rn-Py-PXf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

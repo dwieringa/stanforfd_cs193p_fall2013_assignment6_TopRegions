@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.
 //
 
-#import "PlaceFlickrPhotosTVC.h"
+#import "RegionFlickrPhotosTVC.h"
 #import "FlickrFetcher.h"
 
-@interface PlaceFlickrPhotosTVC ()
+@interface RegionFlickrPhotosTVC ()
 
 @end
 
-@implementation PlaceFlickrPhotosTVC
+@implementation RegionFlickrPhotosTVC
 
-- (void)setPlace:(NSDictionary *)place
+- (void)setRegion:(NSDictionary *)region
 {
-    _place = place;
-    self.title = [self.place valueForKey:@"title"];
+    _region = region;
+    self.title = [self.region valueForKey:@"title"];
     [self fetchPhotos];
 }
 
@@ -34,7 +34,7 @@
 - (IBAction)fetchPhotos
 {
     [self.refreshControl beginRefreshing]; // start the spinner
-    NSString *placeid = [self.place valueForKey:FLICKR_PLACE_ID];
+    NSString *placeid = [self.region valueForKey:FLICKR_PLACE_ID];
     NSURL *url = [FlickrFetcher URLforPhotosInPlace:placeid maxResults:50];
     // create a (non-main) queue to do fetch on
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);

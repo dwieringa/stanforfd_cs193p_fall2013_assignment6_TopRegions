@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.
 //
 
-#import "TopFlickrPlacesTVC.h"
+#import "TopFlickrRegionsTVC.h"
 #import "FlickrFetcher.h"
-#import "PlaceFlickrPhotosTVC.h"
+#import "RegionFlickrPhotosTVC.h"
 
-@interface TopFlickrPlacesTVC ()
+@interface TopFlickrRegionsTVC ()
 
 @end
 
-@implementation TopFlickrPlacesTVC
+@implementation TopFlickrRegionsTVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +44,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"Flickr results = %@", propertyListResults);
             [self.refreshControl endRefreshing]; // stop the spinner
-            self.places = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PLACES];
+            self.regions = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PLACES];
         });
     });
 }
@@ -58,9 +58,9 @@
 
 #pragma mark - Navigation
 
-- (void)preparePlaceTableViewController:(PlaceFlickrPhotosTVC *)pvc toDisplayPlace:(NSDictionary *)place
+- (void)preparePlaceTableViewController:(RegionFlickrPhotosTVC *)pvc toDisplayPlace:(NSDictionary *)place
 {
-    pvc.place = place;
+    pvc.region = place;
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -72,8 +72,8 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
             if ([segue.identifier isEqualToString:@"Select Place"]) {
-                if ([segue.destinationViewController isKindOfClass:[PlaceFlickrPhotosTVC class]]) {
-                    NSDictionary *place = [self placeForRowAtIndexPath:indexPath];
+                if ([segue.destinationViewController isKindOfClass:[RegionFlickrPhotosTVC class]]) {
+                    NSDictionary *place = [self regionForRowAtIndexPath:indexPath];
                     [self preparePlaceTableViewController:segue.destinationViewController toDisplayPlace:place  ];
                 }
             }
