@@ -57,7 +57,7 @@
                             <outlet property="delegate" destination="oeX-B4-vQq" id="6DK-sh-K50"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Photos @ a Place" id="3TS-uz-V62"/>
+                    <navigationItem key="navigationItem" title="Photos @ a Region" id="3TS-uz-V62"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="DGm-GJ-SEI">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -78,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Flickr Place Cell" textLabel="cqj-oh-Xcx" detailTextLabel="SbU-an-LpC" style="IBUITableViewCellStyleSubtitle" id="qga-2S-seF">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Flickr Region Cell" textLabel="cqj-oh-Xcx" detailTextLabel="SbU-an-LpC" style="IBUITableViewCellStyleSubtitle" id="qga-2S-seF">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qga-2S-seF" id="mtp-sJ-DM4">
@@ -102,7 +102,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="oeX-B4-vQq" kind="push" identifier="Select Place" id="wjE-Cu-C5b"/>
+                                    <segue destination="oeX-B4-vQq" kind="push" identifier="Select Region" id="wjE-Cu-C5b"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -111,7 +111,7 @@
                             <outlet property="delegate" destination="K9L-XC-OX6" id="S4l-0k-NW4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Top Places" id="YeY-fQ-pfu"/>
+                    <navigationItem key="navigationItem" title="Top Regions" id="YeY-fQ-pfu"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="7vr-qk-XQC">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>

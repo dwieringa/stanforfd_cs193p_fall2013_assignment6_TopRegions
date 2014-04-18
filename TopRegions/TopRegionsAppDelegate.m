@@ -7,40 +7,82 @@
 //
 
 #import "TopRegionsAppDelegate.h"
+#import "FlickrFetcher.h"
+#import "Photo+Flickr.h"
+#import "PhotoDatabaseAvailability.h"
+
+@interface TopRegionsAppDelegate() <NSURLSessionDownloadDelegate>
+@property (strong, nonatomic) UIManagedDocument *document;
+@property (strong, nonatomic) NSManagedObjectContext *photoDatabaseContext;
+@end
 
 @implementation TopRegionsAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
+    // Obtain UIManagedContext (via UIManagedDocument)
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+    NSString *documentName = @"MyDocument";
+    NSURL *url = [documentsDirectory URLByAppendingPathComponent:documentName];
+    self.document = [[UIManagedDocument alloc] initWithFileURL:url];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        [self.document openWithCompletionHandler:^(BOOL success) {
+            if (success) [self documentIsReady];
+            else NSLog(@"couldn't open document at %@", url);
+        }];
+    } else {
+        [self.document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if (success) [self documentIsReady];
+            else NSLog(@"couldn't create document at %@", url);
+        }];
+    }
+
+    
     // Override point for customization after application launch.
     return YES;
 }
-							
-- (void)applicationWillResignActive:(UIApplication *)application
+
+- (void)documentIsReady
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    if (self.document.documentState == UIDocumentStateNormal) {
+        self.photoDatabaseContext = self.document.managedObjectContext;
+        [self fetchPhotos];
+    } else {
+        NSLog(@"trouble in documentIsReady. Check/handle document states");
+    }
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)fetchPhotos
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES; // start the spinner
+    NSURL *url = [FlickrFetcher URLforRecentGeoreferencedPhotos];
+    dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);
+    dispatch_async(fetchQ, ^{
+        NSData *jsonResult = [NSData dataWithContentsOfURL:url];
+        NSDictionary *propertyListResults = [NSJSONSerialization JSONObjectWithData:jsonResult
+                                                                            options:0
+                                                                              error:NULL];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Flickr results = %@", propertyListResults);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO; // stop the spinner
+            [Photo loadPhotosFromFlickrArray:[propertyListResults valueForKeyPath:FLICKR_RESULTS_PHOTOS]
+                    intoManagedObjectContext:self.photoDatabaseContext];
+        });
+    });
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
+- (void)setPhotoDatabaseContext:(NSManagedObjectContext *)photoDatabaseContext
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    _photoDatabaseContext = photoDatabaseContext;
+    
+    NSDictionary *userInfo = self.photoDatabaseContext ? @{ PhotoDatabaseAvailabilityContext : self.photoDatabaseContext } : nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhotoDatabaseAvailabilityNotification
+                                                        object:self
+                                                      userInfo:userInfo];
 }
 
 @end

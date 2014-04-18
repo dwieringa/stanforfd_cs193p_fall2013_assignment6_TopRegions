@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Region" inverseName="photos" inverseEntity="Region" syncable="YES"/>
+        <relationship name="whoTook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photographer" inverseName="photos" inverseEntity="Photographer" syncable="YES"/>
+    </entity>
+    <entity name="Photographer" representedClassName="Photographer" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="whoTook" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Region" representedClassName="Region" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfPhotographers" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="photos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="region" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Photo" positionX="72" positionY="-190" width="128" height="163"/>
+        <element name="Photographer" positionX="-126" positionY="-45" width="128" height="73"/>
+        <element name="Region" positionX="250" positionY="-45" width="128" height="88"/>
+    </elements>
+</model>

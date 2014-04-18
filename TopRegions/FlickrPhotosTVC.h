@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
-@interface FlickrPhotosTVC : UITableViewController
+@interface FlickrPhotosTVC : CoreDataTableViewController
 
 // Model of this MVC (it can be publicly set)
 @property (nonatomic, strong) NSArray *photos; // of Flickr photo NSDictionary

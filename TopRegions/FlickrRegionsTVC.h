@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
-@interface FlickrRegionsTVC : UITableViewController
-@property (nonatomic, strong) NSArray *regions;
-@property (readonly, nonatomic, strong) NSArray *countries; // of Flickr countries
-@property (readonly, nonatomic, strong) NSDictionary *placesByCountry; // of Flickr places NSDictionary
+@interface FlickrRegionsTVC : CoreDataTableViewController
 
-- (NSDictionary *)regionForRowAtIndexPath:(NSIndexPath *)indexPath;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
