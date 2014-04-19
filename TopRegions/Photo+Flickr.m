@@ -11,6 +11,8 @@
 #import "Photographer+Flickr.h"
 #import "Region+Flickr.h"
 
+
+
 @implementation Photo (Flickr)
 
 + (Photo *)photoWithFlickrInfo:(NSDictionary *)photoDictionary
@@ -40,6 +42,10 @@
         photo.placeID = [photoDictionary valueForKeyPath:FLICKR_PHOTO_PLACE_ID];
         photo.imageURL = [[FlickrFetcher URLforPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
         
+        if (![photo.title length]) {
+            photo.title = @"Untitled";
+        }
+        
         // set/create photographer
         NSString *photographerName = [photoDictionary valueForKeyPath:FLICKR_PHOTO_OWNER];
         photo.whoTook = [Photographer photographerWithName:photographerName
@@ -56,6 +62,8 @@
 + (void)fetchRegionForPhoto:(Photo *)photo
         withPhotoDictionary:(NSDictionary *)photoDictionary
 {
+    
+    
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES; // start the spinner
     NSURL *url = [FlickrFetcher URLforInformationAboutPlace:photo.placeID];
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);
@@ -70,7 +78,18 @@
             NSString *regionName = [FlickrFetcher extractRegionNameFromPlaceInformation:propertyListResults];
             photo.region = [Region regionWithName:regionName
                             inManagedObjectContext:[photo managedObjectContext]];
-            photo.region.numberOfPhotographers = [NSNumber numberWithInt:3];
+            
+            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photographer"];
+            request.predicate = [NSPredicate predicateWithFormat:@"any photos.region.name = %@", regionName];
+            
+            NSError *error;
+            NSArray *matches = [[photo managedObjectContext] executeFetchRequest:request error:&error];
+            
+            if (!matches || error ) {
+                NSLog(@"Error searching for photographers in database by region");
+            } else {
+                photo.region.numberOfPhotographers = @([matches count]);
+            }
         });
     });
 }

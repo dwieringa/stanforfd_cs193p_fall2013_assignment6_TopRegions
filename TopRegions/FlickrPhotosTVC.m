@@ -7,9 +7,9 @@
 //
 
 #import "FlickrPhotosTVC.h"
-#import "FlickrFetcher.h"
 #import "ImageViewController.h"
-#import "RecentPhotos.h"
+#import "Photo.h"
+#import "Region.h"
 
 
 @interface FlickrPhotosTVC ()
@@ -18,27 +18,30 @@
 
 @implementation FlickrPhotosTVC
 
-// whenever our Model is set, must update our View
-- (void)setPhotos:(NSArray *)photos
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    _photos = photos;
-    [self.tableView reloadData];
+    _managedObjectContext = managedObjectContext;
+    
+    [self setupFetchedResultsController];
+}
+
+- (void)setupFetchedResultsController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+    
+    
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
 }
 
 #pragma mark - UITableViewDataSource
-
-// the methods in this protocol are what provides the View its data
-// (remember that Views are not allowed to own their data)
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.photos count];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -49,20 +52,11 @@
     // Configure the cell...
     
     // get the photo out of our Model
-    NSDictionary *photo = self.photos[indexPath.row];
+    Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    // update UILabels in the UITableViewCell
-    // valueForKeyPath: supports "dot notation" to look inside dictionaries at other dictionaries
-    cell.textLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
-    cell.detailTextLabel.text = @"";
-    if ([cell.textLabel.text length] > 0) {
-        cell.detailTextLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
-    } else {
-        cell.textLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
-        if ([cell.textLabel.text length] == 0) {
-            cell.textLabel.text = @"Unknown!!!";
-        }
-    }
+    cell.textLabel.text = photo.title;
+    cell.detailTextLabel.text = photo.subtitle;
+
     return cell;
 }
 
@@ -84,7 +78,7 @@
     // is the Detail is an ImageViewController?
     if ([detail isKindOfClass:[ImageViewController class]]) {
         // yes ... we know how to update that!
-        [self prepareImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
+        [self prepareImageViewController:detail toDisplayPhoto:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     }
 }
 
@@ -95,11 +89,11 @@
 // used either when segueing to an ImageViewController
 //   or when our UISplitViewController's Detail view controller is an ImageViewController
 
-- (void)prepareImageViewController:(ImageViewController *)ivc toDisplayPhoto:(NSDictionary *)photo
+- (void)prepareImageViewController:(ImageViewController *)ivc toDisplayPhoto:(Photo *)photo
 {
-    ivc.imageURL = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
-    ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
-    [RecentPhotos addPhoto:photo];
+    ivc.imageURL = [NSURL URLWithString:photo.imageURL];
+    ivc.title = photo.title;
+    //[RecentPhotos addPhoto:photo];
 }
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -119,7 +113,7 @@
                 if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
                     // yes ... then we know how to prepare for that segue!
                     [self prepareImageViewController:segue.destinationViewController
-                                      toDisplayPhoto:self.photos[indexPath.row]];
+                                      toDisplayPhoto:[self.fetchedResultsController objectAtIndexPath:indexPath]];
                 }
             }
         }

@@ -55,14 +55,14 @@
     Region *region = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = region.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photographers", (int)region.numberOfPhotographers];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photographers", [region.numberOfPhotographers intValue]];
     
     return cell;
 }
 
 #pragma mark - Navigation
 
-- (void)prepareRegionTableViewController:(RegionFlickrPhotosTVC *)pvc toDisplayRegion:(NSDictionary *)region
+- (void)prepareRegionTableViewController:(RegionFlickrPhotosTVC *)pvc toDisplayRegion:(Region *)region
 {
     pvc.region = region;
 }
@@ -77,8 +77,8 @@
         if (indexPath) {
             if ([segue.identifier isEqualToString:@"Select Region"]) {
                 if ([segue.destinationViewController isKindOfClass:[RegionFlickrPhotosTVC class]]) {
-//                    NSDictionary *region = [self regionForRowAtIndexPath:indexPath];
-//                    [self prepareRegionTableViewController:segue.destinationViewController toDisplayRegion:region  ];
+                    Region *region = [self.fetchedResultsController objectAtIndexPath:indexPath];
+                    [self prepareRegionTableViewController:segue.destinationViewController toDisplayRegion:region  ];
                 }
             }
         }

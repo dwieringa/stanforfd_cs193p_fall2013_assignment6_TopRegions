@@ -7,7 +7,8 @@
 //
 
 #import "FlickrPhotosTVC.h"
+#import "Region.h"
 
 @interface RegionFlickrPhotosTVC : FlickrPhotosTVC
-@property (nonatomic, strong)NSDictionary *region;
+@property (nonatomic, strong)Region *region;
 @end

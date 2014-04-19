@@ -10,5 +10,8 @@
 
 @interface RecentlyViewedFlickrPhotosTVC : FlickrPhotosTVC
 
+//TODO:delete
+@property (nonatomic, strong) NSArray *photos; // of Flickr photo NSDictionary
+
 
 @end

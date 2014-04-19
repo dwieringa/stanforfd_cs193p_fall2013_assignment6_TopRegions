@@ -31,6 +31,7 @@
                                                    inManagedObjectContext:context];
             
             region.name = name;
+            region.numberOfPhotographers = 0;
         }
     }
     
