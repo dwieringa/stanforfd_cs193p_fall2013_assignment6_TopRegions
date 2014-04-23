@@ -9,8 +9,9 @@
 #import "FlickrPhotosTVC.h"
 #import "ImageViewController.h"
 #import "Photo.h"
+#import "Photographer+Flickr.h"
 #import "Region.h"
-
+#import "FlickrFetcher.h"
 
 @interface FlickrPhotosTVC ()
 
@@ -55,10 +56,39 @@
     Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = photo.title;
-    cell.detailTextLabel.text = photo.subtitle;
+    cell.detailTextLabel.text = photo.whoTook.name;
+
+    //retrieve/set thumbnail
+    cell.imageView.image = [UIImage imageWithData:photo.thumbnail];
+//    cell.tag = [photo.uniqueID intValue];
+    
+    if (!cell.imageView.image) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:photo.thumbnailURL]];
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+        NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request
+                                                        completionHandler:^(NSURL *localfile, NSURLResponse *response, NSError *error) {
+                                                            // this handler is not executing on the main queue, so we can't do UI directly here
+                                                            if (!error) {
+                                                                // UIImage is an exception to the "can't do UI here"
+                                                                UIImage *thumbnail = [UIImage imageWithData:[NSData dataWithContentsOfURL:localfile]];
+                                                                NSData *data = UIImagePNGRepresentation(thumbnail);
+                                                                photo.thumbnail = data;
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    if ([self.fetchedResultsController objectAtIndexPath:indexPath] == photo) {
+                                                                        [self.tableView beginUpdates];
+                                                                        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                                        [self.tableView endUpdates];
+                                                                    }
+                                                                });
+                                                            }
+                                                        }];
+        [task resume]; // don't forget that all NSURLSession tasks start out suspended!
+    }
 
     return cell;
 }
+
 
 #pragma mark - UITableViewDelegate
 

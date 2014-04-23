@@ -2,7 +2,7 @@
 //  Photographer.h
 //  TopRegions
 //
-//  Created by David Wieringa on 4/18/14.
+//  Created by David Wieringa on 4/22/14.
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.
 //
 

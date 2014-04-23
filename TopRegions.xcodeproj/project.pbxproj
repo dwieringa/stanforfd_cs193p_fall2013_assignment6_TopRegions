@@ -11,9 +11,6 @@
 		551C22051901AC8500CA2995 /* Photo+Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C22041901AC8500CA2995 /* Photo+Flickr.m */; };
 		551C22081901B35400CA2995 /* Photographer+Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C22071901B35400CA2995 /* Photographer+Flickr.m */; };
 		551C220B1901BD4E00CA2995 /* Region+Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C220A1901BD4E00CA2995 /* Region+Flickr.m */; };
-		551C22181902289F00CA2995 /* Photographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C22171902289F00CA2995 /* Photographer.m */; };
-		551C221B1902289F00CA2995 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C221A1902289F00CA2995 /* Region.m */; };
-		551C221E1902289F00CA2995 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 551C221D1902289F00CA2995 /* Photo.m */; };
 		55687C2719007B6D007651AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55687C2619007B6D007651AB /* Foundation.framework */; };
 		55687C2919007B6D007651AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55687C2819007B6D007651AB /* CoreGraphics.framework */; };
 		55687C2B19007B6D007651AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55687C2A19007B6D007651AB /* UIKit.framework */; };
@@ -37,6 +34,9 @@
 		55687C7219007BD3007651AB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55687C6B19007BD3007651AB /* ImageViewController.m */; };
 		55687C7719007C24007651AB /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 55687C7619007C24007651AB /* FlickrFetcher.m */; };
 		55687C7E19008191007651AB /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55687C7A19008191007651AB /* CoreDataTableViewController.m */; };
+		55C3E84C190710A800F29321 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C3E84B190710A800F29321 /* Region.m */; };
+		55C3E84F190710A900F29321 /* Photographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C3E84E190710A900F29321 /* Photographer.m */; };
+		55C3E852190710A900F29321 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C3E851190710A900F29321 /* Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,12 +58,6 @@
 		551C22091901BD4E00CA2995 /* Region+Flickr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Region+Flickr.h"; sourceTree = "<group>"; };
 		551C220A1901BD4E00CA2995 /* Region+Flickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Region+Flickr.m"; sourceTree = "<group>"; };
 		551C22151901CB9E00CA2995 /* PhotoDatabaseAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoDatabaseAvailability.h; sourceTree = "<group>"; };
-		551C22161902289F00CA2995 /* Photographer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photographer.h; sourceTree = "<group>"; };
-		551C22171902289F00CA2995 /* Photographer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photographer.m; sourceTree = "<group>"; };
-		551C22191902289F00CA2995 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
-		551C221A1902289F00CA2995 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
-		551C221C1902289F00CA2995 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		551C221D1902289F00CA2995 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		55687C2319007B6D007651AB /* TopRegions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopRegions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55687C2619007B6D007651AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		55687C2819007B6D007651AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,6 +95,12 @@
 		55687C7619007C24007651AB /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 		55687C7919008191007651AB /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		55687C7A19008191007651AB /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		55C3E84A190710A800F29321 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
+		55C3E84B190710A800F29321 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
+		55C3E84D190710A900F29321 /* Photographer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photographer.h; sourceTree = "<group>"; };
+		55C3E84E190710A900F29321 /* Photographer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photographer.m; sourceTree = "<group>"; };
+		55C3E850190710A900F29321 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		55C3E851190710A900F29321 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +130,12 @@
 		551C21E51901901700CA2995 /* Core Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				551C22161902289F00CA2995 /* Photographer.h */,
-				551C221C1902289F00CA2995 /* Photo.h */,
-				551C221D1902289F00CA2995 /* Photo.m */,
-				551C22191902289F00CA2995 /* Region.h */,
-				551C221A1902289F00CA2995 /* Region.m */,
-				551C22171902289F00CA2995 /* Photographer.m */,
+				55C3E84A190710A800F29321 /* Region.h */,
+				55C3E850190710A900F29321 /* Photo.h */,
+				55C3E851190710A900F29321 /* Photo.m */,
+				55C3E84D190710A900F29321 /* Photographer.h */,
+				55C3E84E190710A900F29321 /* Photographer.m */,
+				55C3E84B190710A800F29321 /* Region.m */,
 				551C21E21901791F00CA2995 /* TopRegionsModel.xcdatamodeld */,
 				551C22031901AC8500CA2995 /* Photo+Flickr.h */,
 				551C22041901AC8500CA2995 /* Photo+Flickr.m */,
@@ -375,7 +375,7 @@
 				55687C7019007BD3007651AB /* FlickrRegionsTVC.m in Sources */,
 				55687C7E19008191007651AB /* CoreDataTableViewController.m in Sources */,
 				55687C7119007BD3007651AB /* TopFlickrRegionsTVC.m in Sources */,
-				551C22181902289F00CA2995 /* Photographer.m in Sources */,
+				55C3E84F190710A900F29321 /* Photographer.m in Sources */,
 				55687C6F19007BD3007651AB /* RecentPhotos.m in Sources */,
 				55687C6C19007BD3007651AB /* FlickrPhotosTVC.m in Sources */,
 				55687C3319007B6D007651AB /* main.m in Sources */,
@@ -383,10 +383,10 @@
 				551C22051901AC8500CA2995 /* Photo+Flickr.m in Sources */,
 				551C21E41901791F00CA2995 /* TopRegionsModel.xcdatamodeld in Sources */,
 				55687C7219007BD3007651AB /* ImageViewController.m in Sources */,
-				551C221E1902289F00CA2995 /* Photo.m in Sources */,
+				55C3E852190710A900F29321 /* Photo.m in Sources */,
 				55687C6D19007BD3007651AB /* RegionFlickrPhotosTVC.m in Sources */,
 				551C220B1901BD4E00CA2995 /* Region+Flickr.m in Sources */,
-				551C221B1902289F00CA2995 /* Region.m in Sources */,
+				55C3E84C190710A800F29321 /* Region.m in Sources */,
 				55687C7719007C24007651AB /* FlickrFetcher.m in Sources */,
 				55687C6E19007BD3007651AB /* RecentlyViewedFlickrPhotosTVC.m in Sources */,
 			);

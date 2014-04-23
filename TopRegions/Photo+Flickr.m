@@ -20,7 +20,7 @@
 {
     Photo *photo = nil;
     
-    NSString *unique = photoDictionary[FLICKR_PHOTO_ID];
+    NSNumber *unique = photoDictionary[FLICKR_PHOTO_ID];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate = [NSPredicate predicateWithFormat:@"uniqueID = %@", unique];
     
@@ -41,6 +41,7 @@
         photo.subtitle = [photoDictionary valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
         photo.placeID = [photoDictionary valueForKeyPath:FLICKR_PHOTO_PLACE_ID];
         photo.imageURL = [[FlickrFetcher URLforPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
+        photo.thumbnailURL = [[FlickrFetcher URLforPhoto:photoDictionary format:FlickrPhotoFormatSquare] absoluteString];
         
         if (![photo.title length]) {
             photo.title = @"Untitled";

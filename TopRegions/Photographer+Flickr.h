@@ -11,6 +11,6 @@
 @interface Photographer (Flickr)
 
 + (Photographer *)photographerWithName:(NSString *)name
-                 inManagedObjectContext:(NSManagedObjectContext *)context;
+                inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
