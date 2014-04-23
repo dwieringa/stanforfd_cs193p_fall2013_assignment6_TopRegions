@@ -12,12 +12,23 @@
 #import "Photographer+Flickr.h"
 #import "Region.h"
 #import "FlickrFetcher.h"
+#import "PhotosLoaded.h"
 
 @interface FlickrPhotosTVC ()
 
 @end
 
 @implementation FlickrPhotosTVC
+
+- (void)awakeFromNib
+{
+    [[NSNotificationCenter defaultCenter] addObserverForName:PhotosLoadedNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self performFetch];
+                                                  }] ;
+}
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
@@ -122,7 +133,8 @@
 {
     ivc.imageURL = [NSURL URLWithString:photo.imageURL];
     ivc.title = photo.title;
-    //[RecentPhotos addPhoto:photo];
+    photo.lastView = [[NSDate alloc] init];
+//    NSLog(@"LAST VIEW AFTER=%@", [photo.lastView descriptionWithLocale:[NSLocale currentLocale]]);
 }
 
 // In a story board-based application, you will often want to do a little preparation before navigation

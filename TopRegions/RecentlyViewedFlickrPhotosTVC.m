@@ -7,7 +7,7 @@
 //
 
 #import "RecentlyViewedFlickrPhotosTVC.h"
-#import "RecentPhotos.h"
+#import "PhotoDatabaseAvailability.h"
 
 @interface RecentlyViewedFlickrPhotosTVC ()
 @end
@@ -15,11 +15,35 @@
 
 @implementation RecentlyViewedFlickrPhotosTVC
 
+- (void)awakeFromNib
+{
+    // Obtain database context
+    [[NSNotificationCenter defaultCenter] addObserverForName:PhotoDatabaseAvailabilityNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      self.managedObjectContext = note.userInfo[PhotoDatabaseAvailabilityContext];
+                                                  }] ;
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    self.photos = [RecentPhotos allPhotos];
+    [self performFetch];
+}
+
+- (void)setupFetchedResultsController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    request.predicate = [NSPredicate predicateWithFormat:@"lastView != nil"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"lastView"
+                                                              ascending:NO]];
+    request.fetchLimit = 5;
+    
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
 }
 
 @end

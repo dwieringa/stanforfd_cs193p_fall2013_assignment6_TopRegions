@@ -8,6 +8,7 @@
 
 #import "TopFlickrRegionsTVC.h"
 #import "FlickrFetcher.h"
+#import "RegionsUpdated.h"
 
 @interface TopFlickrRegionsTVC ()
 
@@ -15,20 +16,28 @@
 
 @implementation TopFlickrRegionsTVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super awakeFromNib];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:RegionsUpdatedNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self performFetch];
+                                                  }] ;
 }
 
-- (void)viewDidLoad
+- (void)setupFetchedResultsController
 {
-    [super viewDidLoad];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
+    request.predicate = nil;
+    request.fetchLimit = 7;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"numberOfPhotographers"
+                                                              ascending:NO]];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.managedObjectContext
+                                                                          sectionNameKeyPath:nil cacheName:nil];
 }
-
-
 
 @end

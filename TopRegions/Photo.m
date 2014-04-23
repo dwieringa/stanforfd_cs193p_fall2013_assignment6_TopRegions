@@ -2,7 +2,7 @@
 //  Photo.m
 //  TopRegions
 //
-//  Created by David Wieringa on 4/22/14.
+//  Created by David Wieringa on 4/23/14.
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.
 //
 
@@ -17,9 +17,10 @@
 @dynamic placeID;
 @dynamic subtitle;
 @dynamic thumbnail;
+@dynamic thumbnailURL;
 @dynamic title;
 @dynamic uniqueID;
-@dynamic thumbnailURL;
+@dynamic lastView;
 @dynamic region;
 @dynamic whoTook;
 

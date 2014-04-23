@@ -10,7 +10,8 @@
 #import "FlickrFetcher.h"
 #import "Photographer+Flickr.h"
 #import "Region+Flickr.h"
-
+#import "PhotosLoaded.h"
+#import "RegionsUpdated.h"
 
 
 @implementation Photo (Flickr)
@@ -90,6 +91,9 @@
                 NSLog(@"Error searching for photographers in database by region");
             } else {
                 photo.region.numberOfPhotographers = @([matches count]);
+                [[NSNotificationCenter defaultCenter] postNotificationName:RegionsUpdatedNotification
+                                                                    object:self
+                                                                  userInfo:nil];
             }
         });
     });
@@ -101,6 +105,11 @@
     for (NSDictionary *photoDictionary in photos) {
         [self photoWithFlickrInfo:photoDictionary inManagedObjectContext:context];
     }
+    
+//    NSDictionary *userInfo = context ? @{ PhotoDatabaseAvailabilityContext : self.photoDatabaseContext } : nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhotosLoadedNotification
+                                                        object:self
+                                                      userInfo:nil];
 }
 
 @end

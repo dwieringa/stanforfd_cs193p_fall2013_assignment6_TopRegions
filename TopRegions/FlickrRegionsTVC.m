@@ -10,6 +10,7 @@
 #import "FlickrFetcher.h"
 #import "RegionFlickrPhotosTVC.h"
 #import "PhotoDatabaseAvailability.h"
+#import "PhotosLoaded.h"
 #import "Region.h"
 
 @interface FlickrRegionsTVC ()
@@ -27,18 +28,28 @@
                                            usingBlock:^(NSNotification *note) {
                                                self.managedObjectContext = note.userInfo[PhotoDatabaseAvailabilityContext];
                                            }] ;
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:PhotosLoadedNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self performFetch];
+                                                  }] ;
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
-    
+
+    [self setupFetchedResultsController];
+}
+
+- (void)setupFetchedResultsController
+{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
     request.predicate = nil;
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"numberOfPhotographers"
-                                                              ascending:NO]];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:managedObjectContext
+                                                                        managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil cacheName:nil];
 }
 

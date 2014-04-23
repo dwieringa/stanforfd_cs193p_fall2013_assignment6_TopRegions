@@ -7,6 +7,7 @@
 //
 
 #import "Region+Flickr.h"
+#import "RegionsUpdated.h"
 
 @implementation Region (Flickr)
 
@@ -32,6 +33,9 @@
             
             region.name = name;
             region.numberOfPhotographers = 0;
+            [[NSNotificationCenter defaultCenter] postNotificationName:RegionsUpdatedNotification
+                                                                object:self
+                                                              userInfo:nil];
         }
     }
     

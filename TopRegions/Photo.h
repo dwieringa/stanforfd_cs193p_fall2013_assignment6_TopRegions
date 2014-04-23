@@ -2,7 +2,7 @@
 //  Photo.h
 //  TopRegions
 //
-//  Created by David Wieringa on 4/22/14.
+//  Created by David Wieringa on 4/23/14.
 //  Copyright (c) 2014 Userwise Solutions. All rights reserved.
 //
 
@@ -17,9 +17,10 @@
 @property (nonatomic, retain) NSString * placeID;
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSData * thumbnail;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSNumber * uniqueID;
 @property (nonatomic, retain) NSString * thumbnailURL;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * uniqueID;
+@property (nonatomic, retain) NSDate * lastView;
 @property (nonatomic, retain) Region *region;
 @property (nonatomic, retain) Photographer *whoTook;
 
