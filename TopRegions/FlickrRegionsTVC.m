@@ -35,9 +35,8 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
     request.predicate = nil;
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                              ascending:YES
-                                                               selector:@selector(localizedStandardCompare:)]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"numberOfPhotographers"
+                                                              ascending:NO]];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:managedObjectContext
                                                                           sectionNameKeyPath:nil cacheName:nil];
