@@ -30,7 +30,7 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate = nil;
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title"
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"whoTook.name"
                                                               ascending:YES
                                                                selector:@selector(localizedStandardCompare:)]];
     
@@ -38,7 +38,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
+                                                                          sectionNameKeyPath:@"whoTook.name"
                                                                                    cacheName:nil];
 }
 
@@ -60,7 +60,6 @@
 
     //retrieve/set thumbnail
     cell.imageView.image = [UIImage imageWithData:photo.thumbnail];
-//    cell.tag = [photo.uniqueID intValue];
     
     if (!cell.imageView.image) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:photo.thumbnailURL]];

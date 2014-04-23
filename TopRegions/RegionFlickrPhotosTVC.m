@@ -25,7 +25,10 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate = [NSPredicate predicateWithFormat:@"region.name = %@", self.region.name];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title"
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"whoTook.name"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)],
+                                [NSSortDescriptor sortDescriptorWithKey:@"uniqueID"
                                                               ascending:YES
                                                                selector:@selector(localizedStandardCompare:)]];
     
@@ -33,7 +36,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
+                                                                          sectionNameKeyPath:@"whoTook.name"
                                                                                    cacheName:nil];
 }
 
