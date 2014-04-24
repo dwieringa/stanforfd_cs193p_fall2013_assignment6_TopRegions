@@ -21,7 +21,7 @@
 {
     Photo *photo = nil;
     
-    NSNumber *unique = photoDictionary[FLICKR_PHOTO_ID];
+    NSString *unique = photoDictionary[FLICKR_PHOTO_ID];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate = [NSPredicate predicateWithFormat:@"uniqueID = %@", unique];
     

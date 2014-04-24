@@ -30,6 +30,11 @@
                                                   }] ;
 }
 
+-(TopRegionsAppDelegate *) app
+{
+    return (TopRegionsAppDelegate *) [[UIApplication sharedApplication] delegate];
+}
+
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;

@@ -40,5 +40,10 @@
                                                                                    cacheName:nil];
 }
 
+- (IBAction)refreshPhotos:(UIRefreshControl *)sender {
+    //TODO: ideally we'd stop the refresh control AFTER downloads complete
+    [self.app startPhotoFetch];
+    [self.refreshControl endRefreshing];
+}
 
 @end

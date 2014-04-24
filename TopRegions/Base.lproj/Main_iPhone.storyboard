@@ -50,7 +50,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="yAw-io-QAe">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="fetchPhotos" destination="ut1-qL-TSU" eventType="valueChanged" id="DSW-cc-Kbz"/>
+                            <action selector="refreshPhotos:" destination="ut1-qL-TSU" eventType="valueChanged" id="mzi-5y-CTl"/>
                         </connections>
                     </refreshControl>
                 </tableViewController>
@@ -104,7 +104,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Ic0-5k-tjJ">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="fetchPlaces" destination="qi3-nm-UdF" eventType="valueChanged" id="sRT-oD-BPI"/>
+                            <action selector="refreshPhotos:" destination="qi3-nm-UdF" eventType="valueChanged" id="Pq5-nD-RQx"/>
                         </connections>
                     </refreshControl>
                 </tableViewController>
@@ -275,6 +275,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5fh-WE-wdX"/>
+        <segue reference="egR-Ic-qu8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,6 +12,7 @@
 #import "PhotoDatabaseAvailability.h"
 #import "PhotosLoaded.h"
 #import "Region.h"
+#import "TopRegionsAppDelegate.h"
 
 @interface FlickrRegionsTVC ()
 
@@ -51,6 +52,17 @@
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil cacheName:nil];
+}
+
+-(TopRegionsAppDelegate *) app
+{
+    return (TopRegionsAppDelegate *) [[UIApplication sharedApplication] delegate];
+}
+
+- (IBAction)refreshPhotos:(UIRefreshControl *)sender {
+    //TODO: ideally we'd stop the refresh control AFTER downloads complete
+    [self.app startPhotoFetch];
+    [self.refreshControl endRefreshing];
 }
 
 #pragma mark - UITableViewDataSource

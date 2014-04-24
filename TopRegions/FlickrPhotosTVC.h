@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
+#import "TopRegionsAppDelegate.h"
 
 @interface FlickrPhotosTVC : CoreDataTableViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 - (void)setupFetchedResultsController; //abstract
+- (TopRegionsAppDelegate *) app;
 
 @end

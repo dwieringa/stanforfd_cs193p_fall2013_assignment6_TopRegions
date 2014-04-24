@@ -94,6 +94,12 @@
 {
     _photoDatabaseContext = photoDatabaseContext;
     
+    // every time the context changes, we'll restart our timer
+    // so kill (invalidate) the current one
+    // (we didn't get to this line of code in lecture, sorry!)
+    [self.flickrForegroundFetchTimer invalidate];
+    self.flickrForegroundFetchTimer = nil;
+    
     if (self.photoDatabaseContext) {
         // this timer will fire only when we are in the foreground
         self.flickrForegroundFetchTimer = [NSTimer scheduledTimerWithTimeInterval:FOREGROUND_FLICKR_FETCH_INTERVAL
