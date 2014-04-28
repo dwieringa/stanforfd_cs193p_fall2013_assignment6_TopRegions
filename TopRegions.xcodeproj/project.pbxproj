@@ -319,6 +319,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Userwise Solutions";
 				TargetAttributes = {
+					55687C2219007B6D007651AB = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					55687C4619007B6D007651AB = {
 						TestTargetID = 55687C2219007B6D007651AB;
 					};

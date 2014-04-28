@@ -54,8 +54,10 @@
                                     inManagedObjectContext:context];
         
         // fetch region
-        [self fetchRegionForPhoto:photo
-              withPhotoDictionary:photoDictionary];
+        if ([photo.placeID length]) {
+            [self fetchRegionForPhoto:photo
+                  withPhotoDictionary:photoDictionary];
+        }
     }
     
     return photo;
@@ -71,6 +73,9 @@
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);
     dispatch_async(fetchQ, ^{
         NSData *jsonResult = [NSData dataWithContentsOfURL:url];
+        if (jsonResult == nil) {
+            NSLog(@"jsonResult is nil");
+        }
         NSDictionary *propertyListResults = [NSJSONSerialization JSONObjectWithData:jsonResult
                                                                             options:0
                                                                               error:NULL];
