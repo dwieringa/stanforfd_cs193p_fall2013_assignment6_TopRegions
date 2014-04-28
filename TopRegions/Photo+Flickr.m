@@ -74,7 +74,20 @@
     dispatch_async(fetchQ, ^{
         NSData *jsonResult = [NSData dataWithContentsOfURL:url];
         if (jsonResult == nil) {
+            // sometimes we're getting nil as a result even though the URL is good and json data at URL is valid
+            // it seems to be after XCode "sits" for a bit and then I come back and simulate a background fetch
+            // below I'm repeating the fetch 2 more times.  It seems to work fine on the 1st retry so far.
             NSLog(@"jsonResult is nil");
+            jsonResult = [NSData dataWithContentsOfURL:url];
+            if (jsonResult == nil) {
+                NSLog(@"jsonResult is nil AGAIN");
+                jsonResult = [NSData dataWithContentsOfURL:url];
+                if (jsonResult == nil) {
+                    // after 3 failed attempts, give up
+                    NSLog(@"jsonResult is nil AGAIN #3");
+                    return;
+                }
+            }
         }
         NSDictionary *propertyListResults = [NSJSONSerialization JSONObjectWithData:jsonResult
                                                                             options:0

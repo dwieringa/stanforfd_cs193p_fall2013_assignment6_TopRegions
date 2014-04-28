@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="UWa-a0-u0Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="UWa-a0-u0Q">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="1781" y="-689"/>
         </scene>
-        <!--Top Flickr RegionsTVC - Top Places-->
+        <!--Top Flickr RegionsTVC - Top Regions-->
         <scene sceneID="Oty-Wn-IhH">
             <objects>
-                <tableViewController title="Top Places" id="K9L-XC-OX6" customClass="TopFlickrRegionsTVC" sceneMemberID="viewController">
+                <tableViewController title="Top Regions" id="K9L-XC-OX6" customClass="TopFlickrRegionsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4rn-Py-PXf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,13 +172,13 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3355" y="1310"/>
+            <point key="canvasLocation" x="963" y="1454"/>
         </scene>
         <!--Navigation Controller - Top Places NC-->
         <scene sceneID="cko-F7-WC9">
             <objects>
                 <navigationController title="Top Places NC" automaticallyAdjustsScrollViewInsets="NO" id="eOM-oz-iiP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Top Places" id="7bW-eP-CrD"/>
+                    <tabBarItem key="tabBarItem" title="Top Regions" id="7bW-eP-CrD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yNb-tt-0Wx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -292,7 +292,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w4F-rD-5mv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2381" y="1310"/>
+            <point key="canvasLocation" x="-11" y="1454"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
